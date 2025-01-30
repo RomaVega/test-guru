@@ -5,7 +5,8 @@
 2. Тесты (Tests)
 3. Вопросы (Questions)
 4. Ответы (Answers)
-5. Результаты тестиования (Results)
+5. Результаты тестирования (Results)
+6. Категории (Categories)
 _____________________
 * Ruby version: 3.2.0
 * System dependencies
