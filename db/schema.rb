@@ -4,7 +4,7 @@
 #
 # This file is the source Rails uses to define your schema when running `bin/rails
 # db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
+# be faster and is potentially less error-prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
@@ -14,10 +14,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_014017) do
   create_table "answers", force: :cascade do |t|
     t.text "body", null: false
     t.boolean "correct", default: false, null: false
-    t.integer "questions_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questions_id"], name: "index_answers_on_questions_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -38,8 +38,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_014017) do
     t.string "title", null: false
     t.integer "level", default: 0, null: false
     t.integer "category_id", null: false
+    t.integer "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
   end
 
@@ -51,7 +53,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_014017) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "answers", "questions", column: "questions_id"
+  add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "categories"
+  add_foreign_key "tests", "users", column: "author_id"
 end
