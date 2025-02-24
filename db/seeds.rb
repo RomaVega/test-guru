@@ -34,4 +34,3 @@ test3 = Test.create!(title: "Action Controller Overview", level: 1, category: ca
 TestPassage.create!(user: user1, test: test1, completed: true)
 TestPassage.create!(user: user2, test: test2, completed: false)
 TestPassage.create!(user: user3, test: test3, completed: true)
-
