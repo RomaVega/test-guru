@@ -39,19 +39,14 @@ question2 = Question.create!(body: "Какой метод используетс
 question3 = Question.create!(body: "Что делает before_action в контроллере?", test_id: test3.id)
 
 # Create answers
-Answer.create!(body: "Это ORM для работы с БД", question: question1.id, correct: true)
-Answer.create!(body: "Это замена SQL", question: question1.id, correct: false)
+Answer.create!(body: "Это ORM для работы с БД", question: question1, correct: true)
+Answer.create!(body: "Это замена SQL", question: question1, correct: false)
 
 Answer.create!(body: "Метод render", question: question2, correct: true)
 Answer.create!(body: "Метод view", question: question2, correct: false)
 
 Answer.create!(body: "Вызывает метод перед выполнением действия", question: question3, correct: true)
 Answer.create!(body: "Выполняет проверку перед действием", question: question3, correct: false)
-
-# User actions test
-TestPassage.create!(user: user1, test: test1, completed: true)
-TestPassage.create!(user: user2, test: test2, completed: false)
-TestPassage.create!(user: user3, test: test3, completed: true)
 
 categories = Category.create!([
                                 { title: "Models" },
@@ -64,3 +59,8 @@ Test.create!(
   category: categories.first,
   author: User.first
 )
+
+# User actions test
+TestPassage.create!(user: user1, test: test1, completed: true)
+TestPassage.create!(user: user2, test: test2, completed: false)
+TestPassage.create!(user: user3, test: test3, completed: true)
