@@ -4,8 +4,6 @@ class CreateCategories < ActiveRecord::Migration[8.0]
       t.string :title, null: false
 
       t.timestamps
-
-      add_index :categories, :title, unique: true
     end
   end
 end
