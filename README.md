@@ -8,7 +8,7 @@
 5. Результаты тестирования (Results)
 6. Категории (Categories)
 _____________________
-![ERD Diagram](docs/erd.png)
+![ERD Diagram](docs/ERD.png)
 _____________________
 * Ruby version: 3.2.0
 * System dependencies
