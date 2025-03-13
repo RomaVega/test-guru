@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   has_many :tests, class_name: "Test", foreign_key: "author_id"
+  has_many :tests, through: :test_passages
+  has_many :test_passages
   def tests_by_difficulty(level)
-    Test.joins("INNER JOIN test_passages ON tests.id = test_passages.test_id")
-        .where("test_passages.user_id = ?", self.id)
-        .where(level: level)
-        .distinct
+    tests.where(level: level).distinct
   end
 end
