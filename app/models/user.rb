@@ -4,6 +4,6 @@ class User < ApplicationRecord
   has_many :passed_tests, through: :test_passages, source: :test
 
   def tests_by_difficulty(level)
-    tests.where(level: level).distinct
+    passed_tests.where(level: level).distinct
   end
 end
