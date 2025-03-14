@@ -39,14 +39,15 @@ question2 = Question.create!(body: "Какой метод используетс
 question3 = Question.create!(body: "Что делает before_action в контроллере?", test_id: test3.id)
 
 # Create answers
-Answer.create!(body: "Это ORM для работы с БД", question_id: question1.id, correct: true)
-Answer.create!(body: "Это замена SQL", question_id: question1.id, correct: false)
+Answer.create_answer(body: "Это ORM для работы с БД", question: question1, correct: true)
+Answer.create_answer(body: "Это замена SQL", question: question1, correct: false)
 
-Answer.create!(body: "Метод render", question_id: question2.id, correct: true)
-Answer.create!(body: "Метод view", question_id: question2.id, correct: false)
+Answer.create_answer(body: "Метод render", question: question2, correct: true)
+Answer.create_answer(body: "Метод view", question: question2, correct: false)
 
-Answer.create!(body: "Вызывает метод перед выполнением действия", question_id: question3.id, correct: true)
-Answer.create!(body: "Выполняет проверку перед действием", question_id: question3.id, correct: false)
+Answer.create_answer(body: "Вызывает метод перед выполнением действия", question: question3, correct: true)
+Answer.create_answer(body: "Выполняет проверку перед действием", question: question3, correct: false)
+
 
 # User actions test
 user1.passed_tests << test1
