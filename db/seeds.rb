@@ -29,8 +29,8 @@ puts "Созданы категорий: #{Category.count}"
 
 # Create tests
 test1 = Test.create!(title: "Active Record Basics", level: 1, category: category_rails_models, author: user1)
-test2 = Test.create!(title: "Action View Overview", level: 1, category: category_rails_views, author: user2)
-test3 = Test.create!(title: "Action Controller Overview", level: 1, category: category_rails_controllers, author: user3)
+test2 = Test.create!(title: "Action View Overview", level: 2, category: category_rails_views, author: user2)
+test3 = Test.create!(title: "Action Controller Overview", level: 7, category: category_rails_controllers, author: user3)
 puts "Создано тестов: #{Test.count}"
 
 # Create questions
@@ -39,14 +39,20 @@ question2 = Question.create!(body: "Какой метод используетс
 question3 = Question.create!(body: "Что делает before_action в контроллере?", test_id: test3.id)
 
 # Create answers
-Answer.create_answer(body: "Это ORM для работы с БД", question: question1, correct: true)
-Answer.create_answer(body: "Это замена SQL", question: question1, correct: false)
+Answer.create!(body: "Это ORM для работы с БД", question: question1, correct: true)
+Answer.create!(body: "Это замена SQL", question: question1, correct: false)
+Answer.create!(body: "Это замена тебя", question: question1, correct: false)
+Answer.create!(body: "Это замена твоей тянки", question: question1, correct: false)
 
-Answer.create_answer(body: "Метод render", question: question2, correct: true)
-Answer.create_answer(body: "Метод view", question: question2, correct: false)
+Answer.create!(body: "Метод render", question: question2, correct: true)
+Answer.create!(body: "Метод view", question: question2, correct: false)
+Answer.create!(body: "Метод puknull", question: question2, correct: false)
+Answer.create!(body: "Метод mimo", question: question2, correct: false)
 
-Answer.create_answer(body: "Вызывает метод перед выполнением действия", question: question3, correct: true)
-Answer.create_answer(body: "Выполняет проверку перед действием", question: question3, correct: false)
+Answer.create!(body: "Вызывает метод перед выполнением действия", question: question3, correct: true)
+Answer.create!(body: "Выполняет проверку перед отходом ко сну", question: question3, correct: false)
+Answer.create!(body: "Выполняет проверку перед употреблением молодёжных напитков", question: question3, correct: false)
+Answer.create!(body: "Выполняет проверку перед следствием", question: question3, correct: false)
 
 
 # User actions test
