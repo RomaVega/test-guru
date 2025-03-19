@@ -5,5 +5,4 @@ class Answer < ApplicationRecord
 
   validates :body, presence: true
   validates :body, uniqueness: true
-  validates :correct, { in: [ true, false ] }
 end
