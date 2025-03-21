@@ -7,9 +7,9 @@ class Test < ApplicationRecord
   has_many :users, through: :test_passages
 
   validates :title, presence: true
-  validates :level, numericality: { only_integer: :true, greater_than_or_equal_to: 0 }, uniqueness: { scope: :title }
-  validates :category_id, presence: true, numericality: :only_integer
-  validates :author_id, presence: true, numericality: :only_integer
+  #  validates :level, numericality: { only_integer: :true, greater_than_or_equal_to: 0 }, uniqueness: { scope: :title }
+  #validates :category_id, presence: true, numericality: :only_integer
+  # validates :author_id, presence: true, numericality: :only_integer
 
   scope :by_category_name, ->(category_title) {
     joins(:category).where(categories: { title: category_title }).order(title: :desc)
@@ -17,4 +17,11 @@ class Test < ApplicationRecord
   scope :easy_lvl, -> { where(level: [ 0, 1 ]) }
   scope :medium_lvl, -> { where(level: [ 2, 3, 4 ]) }
   scope :hard_lvl, -> { where(level: (5..Float::INFINITY)) }
+
+  def self.by_category_name(category_title)
+    joins(:category)
+      .where(categories: { title: category_title })
+      .order(title: :desc)
+      .pluck(:title)
+  end
 end
