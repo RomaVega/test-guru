@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  belongs_to :test
+
   has_many :answers, dependent: :destroy
 
   validates :body, presence: true
@@ -16,6 +18,8 @@ class Question < ApplicationRecord
   end
 
   def must_have_one_correct_answer
+    return if answers.empty?
+
     if answers.where(correct: true).count < 1
       errors.add(:answers, "Must be 1 correct answer and 3 incorrect")
     end

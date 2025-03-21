@@ -17,9 +17,9 @@ Category.destroy_all
 User.destroy_all
 
 # Create users
-user1 = User.create!(name: "Петя", email: "peterbu@gmail.com")
-user2 = User.create!(name: "Сёма", email: "semen@gmail.com")
-user3 = User.create!(name: "Ефим", email: "efi@gmail.com")
+user1 = User.create!(name: "Petr", email: "peterbu@gmail.com")
+user2 = User.create!(name: "Semen", email: "semen@gmail.com")
+user3 = User.create!(name: "Efim", email: "efi@gmail.com")
 
 # Create categories
 category_rails_models = Category.create!(title: "Models")
