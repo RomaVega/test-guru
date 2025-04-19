@@ -1,0 +1,20 @@
+<h1><%= @test.title %></h1>
+
+<p>Level: <%= @test.level %></p>
+
+<h2>Questions:</h2>
+
+<ol class="questions-list">
+  <% @test.questions.each do |question| %>
+    <li class="question-item" style="display: flex; align-items: center;">
+      <%= link_to question.body, edit_question_path(question) %>
+      <%= form_with model: question, method: :delete, local: true, class: "inline-form" do %>
+        <%= submit_tag "❌", data: { confirm: "Удалить этот вопрос?" }, style: "background: none; border: none; cursor: pointer;" %>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+<ul>
+<li><%= link_to 'New', new_test_question_path(@test), class: 'btn btn-primary' %><br><br>
+</ul>
+<%= link_to 'Back', tests_path %>

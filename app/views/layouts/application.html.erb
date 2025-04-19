@@ -13,6 +13,7 @@
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
+    <!-- Icons -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -24,5 +25,17 @@
 
   <body>
     <%= yield %>
+
+    <footer>
+    <p> <%= current_year %>, Roma Vega </p>
+    <p>
+      Проект:
+      <%= link_to 'TestGuru', github_url('RomaVega', 'test-guru'), target: 'blank', rel: 'noopener' %>
+      - приложение для создания и прохождения тестов.
+    </p>
+    <p>
+      <%= link_to 'Учебный проект в онлайн-школе Thinknetica', 'https://thinknetica.com', target: '_blank', rel: 'noopener' %>
+    </p>
+    </footer>
   </body>
 </html>
