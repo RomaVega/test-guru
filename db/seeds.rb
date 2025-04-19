@@ -27,7 +27,7 @@ puts "Создано категорий: #{Category.count}"
 # Создание тестов
 test1 = Test.create!(title: "Active Record Basics", level: 1, category: category_rails_models, author: user1)
 test2 = Test.create!(title: "Action View Overview", level: 2, category: category_rails_views, author: user2)
-test3 = Test.create!(title: "Action Controller Overview", level: 4, category: category_rails_controllers, author: user3)
+test3 = Test.create!(title: "Action Controller Overview", level: 7, category: category_rails_controllers, author: user3)
 test4 = Test.create!(title: "Rails Routing", level: 3, category: category_rails_routes, author: user4)
 
 puts "Создано тестов: #{Test.count}"
