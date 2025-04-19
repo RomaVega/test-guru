@@ -1,0 +1,10 @@
+<% form_with model: [test, question] do |f| %>
+  <div class="field">
+    <%= f.label :body, "Текст вопроса" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Создать вопрос" %>
+  </div>
+<% end %>
