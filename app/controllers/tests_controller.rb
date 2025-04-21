@@ -4,21 +4,24 @@ class TestsController < ApplicationController
   def index
     @tests = Test.includes(:questions)
   end
+
   def show
     @questions = @test.questions
   end
+
   def new
     @test = Test.new
   end
+
   def create
-    @test = Test.new(test_params)
-    @test.author = User.first # Assuming the first user is the author for simplicity
+    @test = User.first.tests.new(test_params)
     if @test.save
       redirect_to @test, notice: "Test was successfully created."
     else
       render :new
     end
   end
+
   def edit; end
 
   def update
@@ -28,6 +31,7 @@ class TestsController < ApplicationController
       render :edit
     end
   end
+
   def destroy
     @test.destroy
     redirect_to tests_url, notice: "Test was successfully deleted."
