@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :tests do
-    resources :questions, shallow: true
+    resources :questions, shallow: true, except: :index
   end
 
   root "tests#index"
