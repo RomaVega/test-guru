@@ -9,7 +9,7 @@
     <li class="question-item" style="display: flex; align-items: center;">
       <%= link_to question.body, edit_question_path(question) %>
       <%= form_with model: question, method: :delete, local: true, class: "inline-form" do %>
-        <%= submit_tag "❌", data: { confirm: "Удалить этот вопрос?" }, style: "background: none; border: none; cursor: pointer;" %>
+        <%= submit_tag "❌", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "background: none; border: none; cursor: pointer;" %>
       <% end %>
     </li>
   <% end %>
