@@ -1,0 +1,18 @@
+<div class="test-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+  <h3 style="margin-top: 0;">
+    <%= link_to test.title, test_path(test), style: "text-decoration: none" %>
+  </h3>
+
+  <% if test.questions.any? %>
+    <h5>Questions (<%= test.questions.count %>):</h5>
+    <ul>
+      <%= render partial: 'questions/question', collection: test.questions %>
+    </ul>
+  <% else %>
+    <p><em>No questions yet.</em></p>
+  <% end %>
+
+  <div style="margin-top: 15px;">
+    <%= render 'questions/form', test: test, question: Question.new %>
+  </div>
+</div>

@@ -1,16 +1,9 @@
 class QuestionsController < ApplicationController
-  before_action :set_test, only: %i[index new create]
-  before_action :set_question, only: %i[show destroy]
+  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_test, only: %i[new create]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-  def index
-    @questions = @test.questions
-    render plain: @questions.map { |q| q.body }.join("\n")
-  end
-
-  def show
-    render plain: @question.body
-  end
+  def show; end
 
   def new
     @question = @test.questions.build
@@ -19,15 +12,28 @@ class QuestionsController < ApplicationController
   def create
     @question = @test.questions.build(question_params)
     if @question.save
-        render plain: " Вопрос успешно создан"
+        redirect_to test_path(@test), notice: "Вопрос успешно создан"
     else
         render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    @test = @question.test
+    if @question.update(question_params)
+      redirect_to test_path(@test), notice: "Вопрос успешно обновлён"
+    else
+      render :edit
+    end
+  end
+
   def destroy
+    @test = @question.test
     @question.destroy
-    render plain: "Вопрос удалён"
+    redirect_to test_path(@test), notice: "Вопрос успешно удалён"
   end
 
   private
@@ -41,7 +47,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content)
+    params.require(:question).permit(:body)
   end
 
   def record_not_found
