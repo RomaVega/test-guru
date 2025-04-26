@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :created_tests, class_name: "Test", foreign_key: "author_id"
   has_many :test_passages
+  has_many :tests, through: :test_passages
+  has_many :created_tests, class_name: "Test", foreign_key: "author_id"
   has_many :passed_tests, through: :test_passages, source: :test
 
   validates :name, presence: true, format: { with: /\A[A-Za-z][A-Za-z0-9._-]{2,19}\z/ }
@@ -8,5 +9,9 @@ class User < ApplicationRecord
 
   def passed_tests_by_level(level)
     passed_tests.where(level: level).distinct
+  end
+
+  def test_passage(test)
+    test_passages.order(id: :desc).find_by(test_id: test.id)
   end
 end

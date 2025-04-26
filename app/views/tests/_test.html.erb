@@ -14,5 +14,6 @@
 
   <div style="margin-top: 15px;">
     <%= render 'questions/form', test: test, question: Question.new %>
+    <%= button_to 'Start', start_test_path(test), method: :post, class: 'btn btn-primary' %>
   </div>
 </div>

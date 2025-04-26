@@ -1,0 +1,6 @@
+<li>
+    <%= link_to 'show', answer_path(answer) %>
+    <%= link_to 'edit', edit_answer_path(answer) %>
+    <%= link_to "destroy", book, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+
+</li>

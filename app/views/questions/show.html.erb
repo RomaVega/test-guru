@@ -1,5 +1,18 @@
-<h1>Question:</h1>
-<%= link_to "Destroy", book, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<h1><%= @question.test.title %> Question</h1>
+
+<p>
+  <%= @question.body %>
+</p>
+
+<h2>Answers</h2>
+
+<%= link_to 'New Answer', new_test_question_answer_path(@question) %>
+
+<ol>
+  <%= render @question.answers %>
+</ol>
+
+<%= link_to "Destroy", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 <p><%= @question.body %></p>
 
 <%= link_to 'Back to Test', test_path(@test) %>

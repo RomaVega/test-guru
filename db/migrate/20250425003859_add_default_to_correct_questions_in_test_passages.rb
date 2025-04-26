@@ -1,0 +1,5 @@
+class AddDefaultToCorrectQuestionsInTestPassages < ActiveRecord::Migration[8.0]
+  def change
+    change_column_default :test_passages, :correct_questions, from: nil, to: 0
+  end
+end
