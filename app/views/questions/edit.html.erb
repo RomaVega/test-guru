@@ -1,14 +1,5 @@
 <h1><%= question_header(@question) %></h1>
 
-<%= form_with model: [@question], local: true do |form| %>
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </div>
+<%= render 'form', question: @question, submit_text: 'Save' %>
 
-  <div>
-    <%= form.submit "Save" %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', test_path(@question.test) %>
+<%= link_to 'Back', test_path(@test) %>

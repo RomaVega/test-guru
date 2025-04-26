@@ -19,6 +19,8 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
+    @test = @question.test
   end
 
   def update

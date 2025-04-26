@@ -1,7 +1,5 @@
 <h1><%= @test.title %></h1>
-
-<p>Level: <%= @test.level %></p>
-
+<div class="test-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
 <h2>Questions:</h2>
 
 <ol class="questions-list">
@@ -14,7 +12,10 @@
     </li>
   <% end %>
 </ol>
+
 <ul>
-<li><%= link_to 'New', new_test_question_path(@test), class: 'btn btn-primary' %><br><br>
+  <li><%= link_to 'New', new_test_question_path(@test), class: 'btn btn-primary' %><br><br>
 </ul>
+
 <%= link_to 'Back', tests_path %>
+</div>
