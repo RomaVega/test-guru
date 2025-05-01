@@ -1,0 +1,23 @@
+<h1>Test Result</h1>
+
+<% percentage = @test_passage.success_percentage %>
+<% passed = @test_passage.passed? %>
+
+<div class="result-message">
+  <p>
+    Your success rate: 
+    <span style="color: <%= passed ? 'green' : 'red' %>;">
+      <%= percentage %>%
+    </span>
+  </p>
+
+  <% if passed %>
+    <p>Congratulations! You have successfully passed the test!</p>
+  <% else %>
+    <p>Sorry, you did not pass the test. Better luck next time!</p>
+  <% end %>
+</div>
+
+<div class="navigation">
+  <%= link_to "Back to All Tests", tests_path %>
+</div>

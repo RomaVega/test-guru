@@ -5,12 +5,19 @@
 
   <h4> Level: <%= test.level %></h4>
 
-
   <% if test.questions.any? %>
     <h5> Questions (<%= test.questions.count %>):</h5>
     <ul>
       <%= render partial: 'questions/question', collection: test.questions %>
     </ul>
+  <% else %>
+    <p><em>No questions yet.</em></p>
+  <% end %>
+
+  <% if test.questions.any? %>
+    <%= form_with url: test_test_passages_path(test), method: :post, local: true do %>
+      <%= submit_tag "Start Test" %>
+    <% end %>
   <% else %>
     <p><em>No questions yet.</em></p>
   <% end %>

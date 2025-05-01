@@ -12,10 +12,18 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :tests do
+    resources :test_passages, only: %i[show update] do
+      member do
+        get :result
+      end
+    end
+    post "test_passages", to: "tests#create_test_passage", as: :test_passages
+
     resources :questions, shallow: true, except: :index do
       resources :answers, shallow: true, except: :index
     end
   end
 
+  resources :answers, only: [ :destroy ]
   root "tests#index"
 end

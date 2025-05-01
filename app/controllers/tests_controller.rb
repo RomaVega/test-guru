@@ -16,9 +16,20 @@ class TestsController < ApplicationController
   def create
     @test = User.first.created_tests.new(test_params)
     if @test.save
-      redirect_to @test, notice: "Test was successfully created."
+      redirect_to @test, flash: "Test was successfully created."
     else
       render :new
+    end
+  end
+
+  def create_test_passage
+    @test = Test.find(params[:test_id])
+    @test_passage = TestPassage.new(user: User.first, test: @test)
+
+    if @test_passage.save
+      redirect_to test_test_passage_path(@test, @test_passage)
+    else
+      redirect_to tests_path, alert: "Could not start the test."
     end
   end
 
@@ -26,7 +37,7 @@ class TestsController < ApplicationController
 
   def update
     if @test.update(test_params)
-      redirect_to @test, notice: "Test was successfully updated."
+      redirect_to @test, flash: "Test was successfully updated."
     else
       render :edit
     end
@@ -44,6 +55,6 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id)
+    params.require(:test).permit(:title, :level, :category_id, :author_id)
   end
 end
