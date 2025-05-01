@@ -1,11 +1,9 @@
-<% form_object = (defined?(test) && !question.persisted?) ? [test, question] : question %>
-
-<%= form_with model: form_object, local: true do |f| %>
+<% form_with model: [test, question] do |f| %>
   <div class="field">
-    <%= f.text_area :body, placeholder: "Текст вопроса" %>
+    <%= f.label :body, "Текст вопроса" %>
   </div>
 
   <div class="actions">
-    <%= f.submit(submit_text || (question.new_record? ? "Создать вопрос" : "Сохранить вопрос")) %>
+    <%= f.submit "Создать вопрос" %>
   </div>
 <% end %>

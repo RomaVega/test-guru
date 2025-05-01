@@ -1,12 +1,6 @@
-<h1>Edit Question</h1>
+<h2>Edit Answers</h2>
 
 <%= form_with model: @question, local: true do |qf| %>
-  <div class="field">
-    <%= qf.text_area :body, placeholder: "Question", rows: 3 %>
-  </div>
-
-  <h2>Edit Answers</h2>
-  
   <% @question.answers.each_with_index do |ans| %>
     <div class="answer-block" style="display: flex; align-items: flex-start; gap: 10px;">
       <%= text_area_tag "answers[][body]", ans.body, rows: 3 %>
@@ -18,16 +12,8 @@
     </div>
   <% end %>
 
-  <h3>New Answer</h3>
-
-  <div class="field">
-    <%= text_area_tag "new_answer_body", nil, placeholder: "New Answer", rows: 3 %>
-  </div>
-
-<br>
   <div class="actions">
-    <%= qf.submit "Save All Changes" %>
+    <br>
+    <%= qf.submit "Save" %>
   </div>
 <% end %>
-<br>
-<%= link_to "Back", test_path(@question.test) %>

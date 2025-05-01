@@ -1,5 +1,13 @@
-<h1>New Question:</h1>
+<h1><%= @test.title %></h1>
 
-<%= render 'form', test: @test, question: @question, submit_text: 'Create' %>
-
-<%= link_to 'Back', test_path(@test) %>
+<%= form_with model: [@test, @question], local: true do |form| %>
+  <div>
+  <%= form.text_area :body, placeholder: "Enter new question" %>
+    </div>
+      <br>
+    <div>
+    <%= form.submit "Create" %>
+    </div>
+<% end %>
+<br >
+<%= link_to "Back", test_path(@question.test) %>

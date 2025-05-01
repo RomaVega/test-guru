@@ -1,0 +1,13 @@
+<h2>Add New Answer</h2>
+<%= form_with model: [@question, @question.answers.build], local: true do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Новый ответ", rows: 3 %>
+  </div>
+  <div class="field">
+    <%= f.check_box :correct %>
+    <%= f.label :correct, "Правильный?" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
