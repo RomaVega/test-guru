@@ -1,0 +1,5 @@
+programming:
+  title: "Programming"
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+  

@@ -1,0 +1,6 @@
+ruby_question:
+  body: "What is Ruby?"
+  test: ruby_test        # ссылка на фикстуру теста
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+  

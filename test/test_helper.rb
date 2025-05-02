@@ -11,5 +11,10 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    setup do
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        ActiveRecord::FixtureSet.reset_cache
+      end
+    end
   end
 end
