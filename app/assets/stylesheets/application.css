@@ -31,9 +31,17 @@ body, html {
   box-sizing: border-box; /* Важно! */
 }
 
+.main-content {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box
+}
+
 /* Карточки тестов */
 .test-card {
   width: 100%;
+  margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;

@@ -1,4 +1,4 @@
-<h1 style="margin: 20px; display: flex; justify-content: space-between; align-items: center;">
+`<h1 style="margin: 20px; display: flex; justify-content: space-between; align-items: center;">
   <%= @test.title %>
 
   <%= form_with model: @test, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "inline-form", local: true do %>

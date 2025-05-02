@@ -23,8 +23,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+  <body style="display: flex; flex-direction: column; align-items: center;">
+    <div class="main-content">
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>
