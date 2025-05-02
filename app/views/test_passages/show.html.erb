@@ -1,4 +1,4 @@
-<h1>Passing Test: <%= @test_passage.test.title %></h1>
+<h1><%= @test_passage.test.title %></h1>
 
 <% unless @test_passage.completed? %>
   <div class="progress">
@@ -15,7 +15,7 @@
           <%= f.label "answer_id_#{answer.id}", answer.body %>
         </div>
       <% end %>
-
+<br>
       <div class="actions">
         <%= f.submit "Next" %>
       </div>

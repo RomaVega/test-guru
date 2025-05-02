@@ -10,3 +10,56 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Удалите эти свойства из body/html */
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Основной контейнер */
+.tests-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto; /* Автоматические боковые отступы для центрирования */
+  padding: 20px;
+  box-sizing: border-box; /* Важно! */
+}
+
+/* Карточки тестов */
+.test-card {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: white;
+  box-sizing: border-box; /* Важно! */
+}
+
+/* Заголовок страницы */
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Кнопка "Create New Test" */
+.create-test-btn {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 30px;
+}
+
+/* Футер */
+.footer {
+  margin-top: auto; /* Прижимаем к низу */
+  padding: 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+  width: 100%;
+}

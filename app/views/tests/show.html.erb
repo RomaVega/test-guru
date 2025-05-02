@@ -1,7 +1,15 @@
-<h1><%= @test.title %></h1>
-<div class="test-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+<h1 style="margin: 20px; display: flex; justify-content: space-between; align-items: center;">
+  <%= @test.title %>
+
+  <%= form_with model: @test, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "inline-form", local: true do %>
+  <%= submit_tag "✕", style: "background: none; border: none; font-size: 24px; cursor: pointer; color: #900;" %>
+  <% end %>
+</h1>
+<div class="test-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+ 
   <h2>Questions & Answers:</h2>
 
+  <!-- Список вопросов -->
   <ol class="questions-list">
     <% @test.questions.each do |question| %>
       <li class="question-item" style="margin-bottom: 15px;">

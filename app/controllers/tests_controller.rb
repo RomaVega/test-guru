@@ -16,7 +16,7 @@ class TestsController < ApplicationController
   def create
     @test = User.first.created_tests.new(test_params)
     if @test.save
-      redirect_to @test, flash: "Test was successfully created."
+      redirect_to test_path(@test), flash: { notice: "Test was successfully created." }
     else
       render :new
     end
