@@ -4,7 +4,10 @@ class TestPassagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
     @test = create(:test, author: @user)
-    @test_passage = create(:test_passage, user: @user, test: @test)
+    @question1 = create(:question, test: @test)
+    @question2 = create(:question, test: @test)
+    @question3 = create(:question, test: @test)
+    @test_passage = create(:test_passage, user: @user, test: @test, current_question: @question1)
   end
 
   test "should get show" do
@@ -12,15 +15,15 @@ class TestPassagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should update test_passage" do
+    answer = create(:answer, question: @test_passage.current_question, correct: true)
+    patch test_test_passage_url(@test_passage.test, @test_passage, format: :html), params: { test_passage: { answer_id: answer.id } }
+    assert_redirected_to test_test_passage_url(@test_passage.test, @test_passage)
+  end
+
   test "should get result" do
     @test_passage.update!(current_question: nil, completed: true)
     get result_test_test_passage_url(@test_passage.test, @test_passage)
     assert_response :success
-  end
-
-  test "should update test_passage" do
-    answer = create(:answer, question: @test_passage.current_question)
-    patch test_test_passage_url(@test_passage.test, @test_passage), params: { test_passage: { answer_id: answer.id } }
-    assert_redirected_to test_test_passage_url(@test_passage.test, @test_passage)
   end
 end

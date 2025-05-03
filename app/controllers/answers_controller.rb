@@ -2,7 +2,11 @@ class AnswersController < ApplicationController
   before_action :find_question, only: %i[new create]
   before_action :set_answer, only: %i[show edit update destroy]
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def new
     @answer = @question.answers.build
@@ -33,15 +37,10 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    @answer = Answer.find(params[:id])
     @question = @answer.question
     @test = @question.test
-    redirect_to test_path(@question.test), notice: "Answer was successfully destroyed."
 
-    respond_to do |format|
-      format.html { redirect_to edit_question_path(@answer.question), notice: "Answer deleted" }
-      format.turbo_stream
-    end
+    redirect_to edit_question_path(@question), notice: "Answer was successfully destroyed."
   end
 
   private

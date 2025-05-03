@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :answer do
-    body { "A programming language" }
+    sequence(:body) { |n| "Answer #{n}" }
     correct { false }
-    question # Ассоциация с вопросом
+    question
   end
 end

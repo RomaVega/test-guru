@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :question do
-    body { "What is Ruby?" }
+    sequence(:body) { |n| "What is Ruby? #{n}" }
     test
     after(:create) do |question|
       correct_answer = create(:answer, question: question, correct: true)

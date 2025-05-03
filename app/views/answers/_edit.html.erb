@@ -1,19 +1,26 @@
-<h2>Edit Answers</h2>
-
-<%= form_with model: @question, local: true do |qf| %>
-  <% @question.answers.each_with_index do |ans| %>
-    <div class="answer-block" style="display: flex; align-items: flex-start; gap: 10px;">
-      <%= text_area_tag "answers[][body]", ans.body, rows: 3 %>
-    </div>
-
-    <div class="field-and-actions" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-      <%= qf.radio_button :correct_answer_id, ans.id %>
-      <%= label_tag "question_correct_answer_id_#{ans.id}", "Correct answer" %>
+<%= form_with model: model, local: true do |form| %>
+  <% if model.errors.any? %>
+    <div>
+      <h2><%= pluralize(model.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <ul>
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <br>
-    <%= qf.submit "Save" %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 3 %>
+  </div>
+
+  <div>
+    <%= form.label :correct %>
+    <%= form.check_box :correct %>
+  </div>
+
+  <div>
+    <%= form.submit "Save" %>
   </div>
 <% end %>

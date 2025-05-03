@@ -1,9 +1,0 @@
-FactoryBot.define do
-  factory :test_passage do
-    user
-    test
-    current_question { |tp| tp.test.questions.first }
-    current_questions { 0 }
-    completed { false }
-  end
-end
