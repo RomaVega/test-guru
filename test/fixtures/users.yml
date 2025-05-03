@@ -1,5 +1,0 @@
-admin:
-  name: "Admin User"  # Добавьте эту строку
-  email: "admin@test.com"
-  created_at: <%= Time.current %>
-  updated_at: <%= Time.current %>

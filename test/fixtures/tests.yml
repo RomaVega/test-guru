@@ -1,8 +1,0 @@
-ruby_test:
-  title: "Ruby Basics"
-  level: 1
-  category: programming  # ссылка на фикстуру категории
-  author: admin          # ссылка на фикстуру пользователя
-  created_at: <%= Time.current %>
-  updated_at: <%= Time.current %>
-  

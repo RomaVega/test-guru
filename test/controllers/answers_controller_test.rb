@@ -2,41 +2,43 @@ require "test_helper"
 
 class AnswersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @question = questions(:one) # Фикстура для вопроса
-    @answer = answers(:one)     # Фикстура для ответа
+    @user = create(:user)
+    @test = create(:test, author: @user)
+    @question = create(:question, test: @test)
+    @answer = create(:answer, question: @question)
+  end
+
+  test "should get show" do
+    get answer_url(@answer)
+    assert_response :success
   end
 
   test "should get new" do
-    get new_question_answer_path(@question)
+    get new_question_answer_url(@question)
     assert_response :success
   end
 
   test "should create answer" do
     assert_difference("Answer.count") do
-      post question_answers_path(@question), params: { answer: { body: "New Answer", correct: false } }
+      post question_answers_url(@question), params: { answer: { body: "New Answer", correct: false } }
     end
-    assert_redirected_to answer_path(Answer.last)
+    assert_redirected_to edit_question_url(@question)
   end
 
   test "should get edit" do
-    get edit_answer_path(@answer)
+    get edit_answer_url(@answer)
     assert_response :success
   end
 
   test "should update answer" do
-    patch answer_path(@answer), params: { answer: { body: "Updated Answer" } }
-    assert_redirected_to answer_path(@answer)
-  end
-
-  test "should show answer" do
-    get answer_path(@answer)
-    assert_response :success
+    patch answer_url(@answer), params: { answer: { body: "Updated Answer" } }
+    assert_redirected_to answer_url(@answer)
   end
 
   test "should destroy answer" do
     assert_difference("Answer.count", -1) do
-      delete answer_path(@answer)
+      delete answer_url(@answer)
     end
-    assert_redirected_to tests_path # Или другой путь, куда перенаправляет ваш destroy
+    assert_redirected_to edit_question_url(@answer.question)
   end
 end
