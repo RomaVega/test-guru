@@ -8,8 +8,14 @@ module ActiveSupport
     parallelize(workers: :number_of_processors)
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-    fixtures :all
+    # fixtures :all
+    self.use_instantiated_fixtures  = false # Отключаем fixtures, чтобы они не мешали
+    self.use_transactional_tests = true
+    include FactoryBot::Syntax::Methods # Enable FactoryBot methods: create, build, attributes_for, etc.
 
     # Add more helper methods to be used by all tests here...
-  end
+
+    FactoryBot.factories.clear # Очищаем фабрики перед загрузкой
+    FactoryBot.find_definitions # Явно загружаем определения фабрик
+    puts "Registered factories: #{FactoryBot.factories.map(&:name).inspect}"  end
 end

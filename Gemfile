@@ -63,3 +63,7 @@ group :test do
 end
 
 gem "rails-i18n"
+
+group :test do
+  gem "factory_bot_rails"
+end

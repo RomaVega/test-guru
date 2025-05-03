@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show edit update destroy]
-  before_action :set_test, only: %i[new create]
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # Только для new/create: есть params[:test_id]
+  before_action :find_test, only: %i[new create]
 
-  def show; end
+  # Для всех остальных (edit, update, show, destroy) — ищем вопрос напрямую
+  before_action :set_question, only: %i[show edit update destroy]
 
   def new
     @question = @test.questions.build
@@ -12,33 +12,37 @@ class QuestionsController < ApplicationController
   def create
     @question = @test.questions.build(question_params)
     if @question.save
-        redirect_to test_path(@test), notice: "Вопрос успешно создан"
+      redirect_to test_path(@question.test), notice: "Question created"
     else
-        render :new
+      render :new
     end
   end
 
   def edit
+    @test = @question.test
+    @question = Question.find(params[:id])
+    @new_answer = Answer.new(question: @question)
   end
 
   def update
-    @test = @question.test
+    @question = Question.find(params[:id])
     if @question.update(question_params)
-      redirect_to test_path(@test), notice: "Вопрос успешно обновлён"
+      redirect_to @question, notice: "Question updated"
     else
       render :edit
     end
   end
 
+  def show; end
+
   def destroy
-    @test = @question.test
     @question.destroy
-    redirect_to test_path(@test), notice: "Вопрос успешно удалён"
+    redirect_to test_path(@question.test), notice: "Question deleted"
   end
 
   private
 
-  def set_test
+  def find_test
     @test = Test.find(params[:test_id])
   end
 
@@ -47,10 +51,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body)
-  end
-
-  def record_not_found
-    render plain: "Record not found", status: :not_found
+    params.require(:question).permit(:body, :correct_answer_id)
   end
 end

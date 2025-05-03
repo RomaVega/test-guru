@@ -1,0 +1,26 @@
+<h1><%= @test_passage.test.title %></h1>
+
+<% unless @test_passage.completed? %>
+  <div class="progress">
+    <p>Question <%= @test_passage.current_question_number %> of <%= @test_passage.total_questions %></p>
+  </div>
+
+  <div class="question">
+    <h3><%= @test_passage.current_question.body %></h3>
+
+    <%= form_with model: @test_passage, url: test_test_passage_path(@test_passage.test, @test_passage), method: :patch, local: true, data: { turbo: false } do |f| %>
+      <% @test_passage.current_question.answers.each do |answer| %>
+        <div class="answer-option">
+          <%= f.radio_button :answer_id, answer.id %>
+          <%= f.label "answer_id_#{answer.id}", answer.body %>
+        </div>
+      <% end %>
+<br>
+      <div class="actions">
+        <%= f.submit "Next" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>Test completed! <%= link_to "View Results", result_test_test_passage_path(@test_passage.test, @test_passage) %></p>
+<% end %>

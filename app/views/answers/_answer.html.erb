@@ -1,0 +1,7 @@
+<%= form_with model: @question, local: true do |qf| %>
+  <% @question.answers.each do |ans| %>
+    <li class="field">
+      <%= ans.body %>
+    </li>
+  <%end%>
+<%end%>

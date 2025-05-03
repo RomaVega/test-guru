@@ -1,0 +1,19 @@
+<%# локал: answer (обязательный) %>
+<% answer ||= Answer.new %>
+
+<% parent = answer.question %>
+
+<%= form_with model: (answer.persisted? ? answer : [parent, answer]), local: true do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Текст ответа", rows: 3 %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :correct %>
+    <%= f.label :correct, "Правильный ответ" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(answer.new_record? ? "Create" : "Save") %>
+  </div>
+<% end %>

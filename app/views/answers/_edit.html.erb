@@ -1,0 +1,26 @@
+<%= form_with model: model, local: true do |form| %>
+  <% if model.errors.any? %>
+    <div>
+      <h2><%= pluralize(model.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <ul>
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 3 %>
+  </div>
+
+  <div>
+    <%= form.label :correct %>
+    <%= form.check_box :correct %>
+  </div>
+
+  <div>
+    <%= form.submit "Save" %>
+  </div>
+<% end %>
