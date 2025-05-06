@@ -1,7 +1,6 @@
 <%= form_with model: [test, question], local: true do |f| %>
   <div class="field">
-    <%= f.label :body, "Текст вопроса" %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, placeholder: "Текст вопроса" %>
   </div>
 
   <div class="actions">

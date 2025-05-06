@@ -1,4 +1,7 @@
-<h1><%= @test.title %></h1>
+<h1>
+<%= @test.title %>
+  <%= delete_resource_button(@test) %>
+</h1>
 
 <p>Level: <%= @test.level %></p>
 
@@ -8,9 +11,7 @@
   <% @test.questions.each do |question| %>
     <li class="question-item" style="display: flex; align-items: center;">
       <%= link_to question.body, edit_question_path(question) %>
-      <%= form_with model: question, method: :delete, local: true, class: "inline-form" do %>
-        <%= submit_tag "❌", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "background: none; border: none; cursor: pointer;" %>
-      <% end %>
+        <%= delete_resource_button(question) %>
     </li>
   <% end %>
 </ol>

@@ -1,6 +1,6 @@
 <li class="question-item" style="display: flex; align-items: center; justify-content: space-between;">
   <%= link_to question.body, edit_question_path(question) %>
-  <%= button_to '❌',
+  <%= button_to '×',
                 question_path(question),
                 method: :delete,
                 data: { confirm: 'Are you sure?' },
