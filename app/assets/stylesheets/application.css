@@ -9,4 +9,9 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- /* app/assets/stylesheets/application.css */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
