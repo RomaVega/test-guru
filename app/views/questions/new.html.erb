@@ -1,12 +1,3 @@
 <h1> Новый вопрос для теста <%= @test.title %></h1>
-
-<%= form_with model: [@test, @question], local: true do |form| %>
-  <div>
-  <%= form.label :body, "Текст вопроса" %>
-  <%= form.text_area :body %>
-    </div>
-
-    <div>
-    <%= form.submit "Создать вопрос" %>
-    </div>
-<% end %>
+<%= render 'form', test: @test, question: @question %>
+<%= link_to 'Назад к тесту', test_path(@test) %>

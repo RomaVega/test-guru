@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show edit update destroy]
-  before_action :set_test, only: %i[new create]
+  before_action :find_question, only: %i[show edit update destroy]
+  before_action :find_test, only: %i[new create]
+  before_action :find_test_from_question, only: %i[show edit update destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def show; end
@@ -18,11 +19,9 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    @test = @question.test
     if @question.update(question_params)
       redirect_to test_path(@test), notice: "Вопрос успешно обновлён"
     else
@@ -31,18 +30,17 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @test = @question.test
     @question.destroy
     redirect_to test_path(@test), notice: "Вопрос успешно удалён"
   end
 
   private
 
-  def set_test
+  def find_test
     @test = Test.find(params[:test_id])
   end
 
-  def set_question
+  def find_question
     @question = Question.find(params[:id])
   end
 
@@ -52,5 +50,9 @@ class QuestionsController < ApplicationController
 
   def record_not_found
     render plain: "Record not found", status: :not_found
+  end
+
+  def find_test_from_question
+    @test = @question.test
   end
 end
