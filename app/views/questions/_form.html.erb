@@ -1,4 +1,4 @@
-<%= form_with model: [test, question], local: true do |f| %>
+<%= form_with model: (question.persisted? ? question : [test, question]), local: true do |f| %>
   <div class="field">
     <%= f.text_area :body, placeholder: "Enter question here" %>
   </div>

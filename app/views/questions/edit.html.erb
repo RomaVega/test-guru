@@ -1,3 +1,5 @@
-<h1>Редактирование вопроса</h1>
-<%= render 'form', test: @test, question: @question %>
-<%= link_to 'Назад к тексту', test_path(@test) %>
+<h1><%= @question.body %></h1>
+<h2><%= "Question edit:" %></h2>
+<%= render 'form', test: @question.test, question: @question %>
+<br>
+<%= link_to 'Back To Test', test_path(@test) %>
