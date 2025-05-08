@@ -1,3 +1,5 @@
-<h1> Новый вопрос для теста <%= @test.title %></h1>
+<h1><%= @test.title %></h1>
+<h2> New Question: </h2>
 <%= render 'form', test: @test, question: @question %>
-<%= link_to 'Назад к тесту', test_path(@test) %>
+<br>
+<%= link_to 'Back to test', test_path(@test) %>

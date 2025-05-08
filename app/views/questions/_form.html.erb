@@ -1,9 +1,9 @@
 <%= form_with model: [test, question], local: true do |f| %>
   <div class="field">
-    <%= f.text_area :body, placeholder: "Текст вопроса" %>
+    <%= f.text_area :body, placeholder: "Enter question here" %>
   </div>
 
   <div class="actions">
-    <%= f.submit question.persisted? ? "Обновить вопрос" : "Создать вопрос" %>
+    <%= f.submit question.persisted? ? "Update Question" : "Create Question" %>
   </div>
 <% end %>
