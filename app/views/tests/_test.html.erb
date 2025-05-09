@@ -1,16 +1,17 @@
 <div class="test-card">
-  <h3><%= link_to test.title, test_path(test) %> </h3>
+  <h3><%= link_to test.title, test_path(test) %></h3>
 
   <% if test.questions.any? %>
     <h5>Questions (<%= test.questions.count %>):</h5>
-<ul class="questions-list">
-  <% test.questions.each do |question| %>
-      <li type=1><%= question.body %></li>
-  <% end %>
-</ul>
-
+    <ul class="questions-list">
+      <% test.questions.each do |question| %>
+        <li type="1"><%= question.body %></li>
+      <% end %>
+    </ul>
+    <%= form_with url: test_test_passages_path(test), method: :post do %>
+      <%= submit_tag "Start Test", class: "btn btn-primary" %>
+    <% end %>
   <% else %>
     <p><em>No questions yet.</em></p>
   <% end %>
-
 </div>

@@ -1,0 +1,12 @@
+<h1><%= @test.title %></h1>
+<p>Question <%= @test.questions.index(@test_passage.current_question) + 1 %> of <%= @test.questions.count %></p>
+<p><%= @test_passage.current_question.body %></p>
+<%= form_with url: test_test_passage_path(@test, @test_passage), method: :put do |f| %>
+  <% @test_passage.current_question.answers.each do |answer| %>
+    <label>
+      <%= f.check_box :answer_ids, { multiple: true }, answer.id, nil %>
+      <%= answer.body %>
+    </label><br>
+  <% end %>
+  <%= f.submit "Next" %>
+<% end %>
