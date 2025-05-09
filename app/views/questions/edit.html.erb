@@ -1,5 +1,14 @@
 <h1><%= @question.body %></h1>
+
 <h2><%= "Question edit:" %></h2>
 <%= render 'form', test: @question.test, question: @question %>
+
+<h3><%= "Answers edit:" %></h3>
+<% @question.answers.each do |answer| %>
+  <%= render 'answers/form', question: @question, answer: answer %>
+  <br>
+  <% end %>
+  <%= render 'answers/form', question: @question, answer: Answer.new %>
+
 <br>
 <%= link_to 'Back To Test', test_path(@test) %>

@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :find_question, only: %i[show edit update destroy]
   before_action :find_test, only: %i[new create]
   before_action :find_test_from_question, only: %i[show edit update destroy]
+
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def show; end
@@ -19,7 +20,10 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @question = Question.find(params[:id])
+    @test = @question.test
+  end
 
   def update
     if @question.update(question_params)

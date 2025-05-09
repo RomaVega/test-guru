@@ -9,12 +9,26 @@
 
 <ol class="questions-list">
   <% @test.questions.each do |question| %>
-    <li class="question-item" style="display: flex; align-items: center;">
-      <%= link_to question.body, edit_question_path(question) %>
-        <%= delete_resource_button(question) %>
+    <li class="question-item">
+      <div class="question-header">
+        <div class="question-title">
+          <%= link_to question.body, edit_question_path(question), class: 'question-link' %>
+          <%= delete_resource_button(question) %>
+        </div>
+      </div>
+
+      <ul class="answers-list">
+        <% question.answers.each do |answer| %>
+          <li class="answer-item">
+            <span class="answer-body"><%= answer.body %></span>
+            <%= delete_resource_button(answer) %>
+          </li>
+        <% end %>
+      </ul>
     </li>
   <% end %>
 </ol>
+
 <ul>
 <li><%= link_to 'New', new_test_question_path(@test), class: 'btn btn-primary' %><br><br>
 </ul>

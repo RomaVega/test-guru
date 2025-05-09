@@ -1,0 +1,19 @@
+<h2>Edit Answers</h2>
+
+<%= form_with model: @question, local: true do |qf| %>
+  <% @question.answers.each_with_index do |ans| %>
+    <div class="answer-block" style="display: flex; align-items: flex-start; gap: 10px;">
+      <%= text_area_tag "answers[][body]", ans.body, rows: 3 %>
+    </div>
+
+    <div class="field-and-actions" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <%= qf.radio_button :correct_answer_id, ans.id %>
+      <%= label_tag "question_correct_answer_id_#{ans.id}", "Correct answer" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <br>
+    <%= qf.submit "Save" %>
+  </div>
+<% end %>
