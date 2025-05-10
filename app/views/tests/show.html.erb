@@ -1,20 +1,35 @@
-<h1><%= @test.title %></h1>
+<h1>
+<%= @test.title %>
+  <%= delete_resource_button(@test) %>
+</h1>
 
 <p>Level: <%= @test.level %></p>
 
-<h2>Questions:</h2>
+<h2>Questions and Answers:</h2>
 
 <ol class="questions-list">
   <% @test.questions.each do |question| %>
-    <li class="question-item" style="display: flex; align-items: center;">
-      <%= link_to question.body, edit_question_path(question) %>
-      <%= form_with model: question, method: :delete, local: true, class: "inline-form" do %>
-        <%= submit_tag "❌", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "background: none; border: none; cursor: pointer;" %>
-      <% end %>
+    <li class="question-item">
+      <div class="question-header">
+        <div class="question-title">
+          <%= link_to question.body, edit_question_path(question), class: 'question-link' %>
+          <%= delete_resource_button(question) %>
+        </div>
+      </div>
+
+      <ul class="answers-list">
+        <% question.answers.each do |answer| %>
+          <li class="answer-item">
+            <span class="answer-body"><%= answer.body %></span>
+            <%= delete_resource_button(answer) %>
+          </li>
+        <% end %>
+      </ul>
     </li>
   <% end %>
 </ol>
+
 <ul>
 <li><%= link_to 'New', new_test_question_path(@test), class: 'btn btn-primary' %><br><br>
 </ul>
-<%= link_to 'Back', tests_path %>
+<%= link_to 'Back To Tests', tests_path %>

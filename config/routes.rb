@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "test_passages/show"
+  get "test_passages/update"
+  get "test_passages/result"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,8 +14,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
   resources :tests do
-    resources :questions, shallow: true, except: :index
+    resources :test_passages, only: %i[show update create] do
+      member { get :result }
+    end
+    resources :questions, shallow: true, except: :index do
+      resources :answers, shallow: true, except: :index
+    end
   end
 
   root "tests#index"

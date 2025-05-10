@@ -1,14 +1,14 @@
-<h1><%= question_header(@question) %></h1>
+<h1><%= @question.body %></h1>
 
-<%= form_with model: [@question], local: true do |form| %>
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </div>
+<h2><%= "Question edit:" %></h2>
+<%= render 'form', test: @question.test, question: @question %>
 
-  <div>
-    <%= form.submit "Save" %>
-  </div>
-<% end %>
+<h3><%= "Answers edit:" %></h3>
+<% @question.answers.each do |answer| %>
+  <%= render 'answers/form', question: @question, answer: answer %>
+  <br>
+  <% end %>
+  <%= render 'answers/form', question: @question, answer: Answer.new %>
 
-<%= link_to 'Back', test_path(@question.test) %>
+<br>
+<%= link_to 'Back To Test', test_path(@test) %>

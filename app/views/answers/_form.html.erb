@@ -1,0 +1,9 @@
+<%= form_with model: (answer.persisted? ? answer : [question, answer]), local: true do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Enter answer here" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit answer.persisted? ? "Update Answer" : "Create Answer" %> <%= f.check_box :correct %> <%= "Correct" %>
+  </div>
+<% end %>

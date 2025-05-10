@@ -1,20 +1,21 @@
 class TestsController < ApplicationController
-  before_action :set_test, only: %i[show edit update destroy]
+  before_action :find_test, only: %i[show edit update destroy]
+  before_action :find_questions, only: %i[show edit update destroy]
+
+  rescue_from ActiveRecord::RecordNotFound, with: :test_not_found
 
   def index
-    @tests = Test.includes(:questions)
+    @tests = Test.includes(:questions).order(created_at: :desc)
   end
 
-  def show
-    @questions = @test.questions
-  end
+  def show; end
 
   def new
-    @test = Test.new
+    @test = User.first.created_tests.build
   end
 
   def create
-    @test = User.first.tests.new(test_params)
+    @test = User.first.created_tests.build(test_params)
     if @test.save
       redirect_to @test, notice: "Test was successfully created."
     else
@@ -39,11 +40,19 @@ class TestsController < ApplicationController
 
   private
 
-  def set_test
+  def find_test
     @test = Test.find(params[:id])
+  end
+
+  def find_questions
+    @questions = @test.questions
   end
 
   def test_params
     params.require(:test).permit(:title, :level, :category_id)
+  end
+
+  def test_not_found
+    redirect_to tests_path, alert: "Test not found"
   end
 end
