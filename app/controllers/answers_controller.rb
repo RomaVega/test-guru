@@ -1,13 +1,12 @@
 class AnswersController < ApplicationController
-  before_action :find_answer, only: %i[edit update destroy]
-  before_action :find_question, only: %i[create edit]
+  before_action :find_answer, only: %i[update edit destroy]
+  before_action :find_question, only: %i[new create]
 
   def new
     @answer = @question.answers.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @answer = @question.answers.build(answer_params)
@@ -19,17 +18,14 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if @answer.update(answer_params)
-      redirect_to edit_question_path(@answer.question), notice: "Answer updated"
-    else
-      render :edit
-    end
+    @answer.update(answer_params)
+    redirect_to edit_question_path(@answer.question), notice: "Answer updated"
   end
 
   def destroy
     @test = @answer.question.test
     @answer.destroy
-    redirect_to @test, notice: "Answer was successfully deleted"
+    redirect_to test_path(@test), notice: "Answer was successfully deleted"
   end
 
   private
